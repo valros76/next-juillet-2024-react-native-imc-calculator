@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6F4E8",
   },
   menuButtonsContainer:{
-    width:"auto"
+    width:"auto",
+    gap: 42,
   },
   menuButtonText: {
     display:"flex",

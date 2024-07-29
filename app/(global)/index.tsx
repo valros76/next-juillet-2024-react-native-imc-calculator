@@ -30,7 +30,7 @@ export default function HomeScreen() {
       />
       <CtaButton
         props={{
-          text: "Commencer",
+          text: "Commencer"
         }}
       />
     </View>

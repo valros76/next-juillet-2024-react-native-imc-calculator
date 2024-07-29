@@ -1,4 +1,6 @@
 import { Link } from "expo-router";
+import {initFirstname} from "@/shared/AsyncFunctions";
+
 import {
   StyleSheet,
   Text,
@@ -13,6 +15,19 @@ import { useState } from "react";
 
 export default function HomeScreen() {
   const [firstname, setFirstname] = useState("");
+
+  const handleConfirmFirstname = async (name = "") => {
+    if(name.length <= 0){
+      return;
+    }
+
+    name = name.trim();
+    name = name.replace(" ", "");
+    name = name.toLowerCase();
+    name = name.slice(0,1).toUpperCase()+name.slice(1, name.length);
+
+    await initFirstname(name);
+  }
 
   return (
     <View style={styles.container}>

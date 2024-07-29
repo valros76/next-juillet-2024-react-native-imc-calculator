@@ -1,22 +1,38 @@
 import { Link } from "expo-router";
-import { Image, StyleSheet, Text, View } from "react-native";
-import { WelcomeText } from "@/components/globals";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import {
+  WelcomeText,
+  CtaButton,
+} from "@/components/globals";
+import { useState } from "react";
 
 export default function HomeScreen() {
+  const [firstname, setFirstname] = useState("");
+
   return (
     <View style={styles.container}>
-      <Image 
-        style={styles.homeImg}
-        source={{
-          uri: "https://images.unsplash.com/photo-1559724087-a45f6a7a35d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1152&q=80"
-        }}
-      />
       <WelcomeText
         props={{
-          text: "Calculateur d'IMC"
+          text: "Quel est votre prénom ?",
         }}
       />
-      <Link href="/about">À propos</Link>
+      <TextInput
+        style={styles.firstnameInput}
+        placeholder="Votre prénom"
+        placeholderTextColor="#BACEC1"
+        value={firstname}
+        onChangeText={setFirstname}
+      />
+      <CtaButton
+        props={{
+          text: "Commencer",
+        }}
+      />
     </View>
   );
 }
@@ -27,10 +43,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  homeImg: {
-    width: 256,
-    height: 256,
-    borderRadius: 64,
-    marginHorizontal: "auto",
-  }
+  firstnameInput: {
+    width: 240,
+    height: 40,
+    borderRadius: 8,
+    backgroundColor: "#ffffff",
+    textAlign: "center",
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderWidth: 1,
+    borderColor: "#BACEC1",
+  },
 });

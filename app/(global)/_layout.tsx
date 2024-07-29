@@ -19,15 +19,31 @@ export default function GlobalLayout() {
           },
           tabBarIconStyle: {
             ...styles.tabBarIconCustom
-          }
+          },
+          href: null,
         }}
       />
       <Tabs.Screen
-        name="about/index"
+        name="dashboard/index"
         options={{
-          title: "À propos",
-          tabBarLabel: () => (<Text>Plus d'infos</Text>),
-          tabBarIcon: () => (<TabBarIcon name="help-circle-outline" size={14}/>),
+          title: "Dashboard",
+          tabBarLabel: () => (<Text>Dashboard</Text>),
+          tabBarIcon: () => (<TabBarIcon name="stats-chart-outline" size={14}/>),
+          tabBarItemStyle: [styles.tabBarItemCustom, {
+            backgroundColor:"#fff"
+          }],
+          tabBarIconStyle: {
+            ...styles.tabBarIconCustom
+          },
+          href: null
+        }}
+      />
+      <Tabs.Screen
+        name="profile/index"
+        options={{
+          title: "Profil",
+          tabBarLabel: () => (<Text>Profil</Text>),
+          tabBarIcon: () => (<TabBarIcon name="person-circle-outline" size={14}/>),
           tabBarItemStyle: [styles.tabBarItemCustom, {
             backgroundColor:"#fff"
           }],
@@ -37,11 +53,39 @@ export default function GlobalLayout() {
         }}
       />
       <Tabs.Screen
-        name="dashboard/index"
+        name="imc-calculator/index"
         options={{
-          title: "Dashboard",
-          tabBarLabel: () => (<Text>Dashboard</Text>),
-          tabBarIcon: () => (<TabBarIcon name="stats-chart-outline" size={14}/>),
+          title: "Calculer mon IMC",
+          tabBarLabel: () => (<Text>Mon IMC</Text>),
+          tabBarIcon: () => (<TabBarIcon name="add-circle-outline" size={14}/>),
+          tabBarItemStyle: [styles.tabBarItemCustom, {
+            backgroundColor:"#fff"
+          }],
+          tabBarIconStyle: {
+            ...styles.tabBarIconCustom
+          }
+        }}
+      />
+      <Tabs.Screen
+        name="about/index"
+        options={{
+          title: "À propos",
+          tabBarLabel: () => (<Text>À propos</Text>),
+          tabBarIcon: () => (<TabBarIcon name="settings-outline" size={14}/>),
+          tabBarItemStyle: [styles.tabBarItemCustom, {
+            backgroundColor:"#fff"
+          }],
+          tabBarIconStyle: {
+            ...styles.tabBarIconCustom
+          }
+        }}
+      />
+      <Tabs.Screen
+        name="history/index"
+        options={{
+          title: "Mon suivi",
+          tabBarLabel: () => (<Text>Mon suivi</Text>),
+          tabBarIcon: () => (<TabBarIcon name="time-outline" size={14}/>),
           tabBarItemStyle: [styles.tabBarItemCustom, {
             backgroundColor:"#fff"
           }],

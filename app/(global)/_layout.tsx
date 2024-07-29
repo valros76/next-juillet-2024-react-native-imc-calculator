@@ -36,6 +36,21 @@ export default function GlobalLayout() {
           }
         }}
       />
+      <Tabs.Screen
+        name="dashboard/index"
+        options={{
+          title: "Dashboard",
+          tabBarLabel: () => (<Text>Dashboard</Text>),
+          tabBarIcon: () => (<TabBarIcon name="stats-chart-outline" size={14}/>),
+          tabBarItemStyle: [styles.tabBarItemCustom, {
+            backgroundColor:"#fff"
+          }],
+          tabBarIconStyle: {
+            ...styles.tabBarIconCustom
+          },
+          href: null
+        }}
+      />
     </Tabs>
   );
 }

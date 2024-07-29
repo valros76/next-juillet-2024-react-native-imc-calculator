@@ -9,7 +9,7 @@ export default function CtaButton({ props }) {
     "TitilliumWeb-Bold": require("@/assets/fonts/TitilliumWeb-Bold.ttf")
   });
 
-  const { text, borderRadius, withIcon, iconType, actionOnPress } = props;
+  const { text, borderRadius, withIcon, iconType, actionOnPress, disabled } = props;
 
   const [buttonIsHover, setButtonIsHover] = useState(false);
   const [buttonIsPressed, setButtonIsPressed] = useState(false);
@@ -35,12 +35,14 @@ export default function CtaButton({ props }) {
         borderRadius: borderRadius ?? 8,
         borderWidth: 1,
         borderColor: (buttonIsHover || buttonIsPressed) ? "#1D3124" : "transparent",
+        backgroundColor: disabled ? "#79797A" : styles.customButton.backgroundColor
       }}
       onPress={() => actionOnPress()}
       onHoverIn={() => setButtonIsHover(() => true)}
       onHoverOut={() => setButtonIsHover(() => false)}
       onPressIn={() => setButtonIsPressed(() => true)}
       onPressOut={() => setButtonIsPressed(() => false)}
+      disabled={disabled}
     >
       <Text style={styles.customButtonText}>
         {withIcon && handleShowIcon(iconType)} {text}

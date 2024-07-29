@@ -51,7 +51,8 @@ export default function HomeScreen() {
       <CtaButton
         props={{
           text: "Commencer",
-          actionOnPress: () => handleConfirmFirstname(firstname)
+          actionOnPress: () => handleConfirmFirstname(firstname),
+          disabled: firstname.length <= 0
         }}
       />
     </View>

@@ -12,7 +12,11 @@ const storeData = async (key = "@key", value) => {
 const getData = async (key = "@key") => {
   try{
     const jsonValue = await AsyncStorage.getItem(key);
-    return jsonValue && JSON.parse(jsonValue);
+    if(!jsonValue){
+      return;
+    }
+    const isJsonStringified = jsonValue.includes(":");
+    return isJsonStringified ? JSON.parse(jsonValue) : jsonValue;
   }catch(err){
     console.table(err);
   }
@@ -46,7 +50,8 @@ export async function initFirstname(firstname = ""){
       return firstname;
     }
 
-    return JSON.parse(jsonValue);
+    const isJsonStringified = jsonValue.includes(":");
+    return isJsonStringified ? JSON.parse(jsonValue) : jsonValue;
 
   }catch(err){
     console.table(err);

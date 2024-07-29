@@ -1,9 +1,19 @@
 import {  StyleSheet, Text, View } from "react-native";
 
 export default function WelcomeText({ props }){
+
+  const {darkMode} = props;
+
   return(
-    <View style={styles.view}>
-      <Text style={styles.text}>
+    <View style={{
+      ...styles.view,
+      backgroundColor: darkMode && "#1D3124",
+      color: darkMode && "#FFFFFF"
+    }}>
+      <Text style={{
+        ...styles.text,
+        color: darkMode && "#FFFFFF"
+      }}>
         {props.text}
       </Text>
     </View>
@@ -12,17 +22,17 @@ export default function WelcomeText({ props }){
 
 const styles = StyleSheet.create({
   view: {
-    width: "max-content",
+    width: "auto",
     maxWidth: "100%",
-    backgroundColor: "#333",
-    color:"#fff",
-    padding: 20,
-    marginVertical: 8,
+    backgroundColor: "transparent",
+    color:"#1D3124",
+    paddingVertical:8,
+    paddingHorizontal: 12,
     marginHorizontal: "auto",
     borderRadius: 256,
   },
   text: {
-    fontSize: 24,
-    color: "#fff",
+    fontSize: 16,
+    color: "#1D3124",
   },
 });

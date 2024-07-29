@@ -18,6 +18,11 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <WelcomeText
         props={{
+          text: "Bonjour.",
+        }}
+      />
+      <WelcomeText
+        props={{
           text: "Quel est votre prénom ?",
         }}
       />
@@ -30,7 +35,7 @@ export default function HomeScreen() {
       />
       <CtaButton
         props={{
-          text: "Commencer"
+          text: "Commencer",
         }}
       />
     </View>
@@ -42,6 +47,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#F6F4E8",
   },
   firstnameInput: {
     width: 240,

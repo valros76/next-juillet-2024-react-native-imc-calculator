@@ -36,7 +36,7 @@ export default function CtaButton({ props }) {
         borderWidth: 1,
         borderColor: (buttonIsHover || buttonIsPressed) ? "#1D3124" : "transparent",
       }}
-      onPress={() => actionOnPress}
+      onPress={() => actionOnPress()}
       onHoverIn={() => setButtonIsHover(() => true)}
       onHoverOut={() => setButtonIsHover(() => false)}
       onPressIn={() => setButtonIsPressed(() => true)}

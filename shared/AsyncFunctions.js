@@ -12,7 +12,7 @@ const storeData = async (key = "@key", value) => {
 const getData = async (key = "@key") => {
   try{
     const jsonValue = await AsyncStorage.getItem(key);
-    return jsonValue !== null ? JSON.parse(jsonValue) : undefined;
+    return jsonValue && JSON.parse(jsonValue);
   }catch(err){
     console.table(err);
   }
@@ -41,7 +41,7 @@ export async function initFirstname(firstname = ""){
     }
 
     const jsonValue = await getData("@profile");
-    if(jsonValue === null){
+    if(!jsonValue){
       await storeData("@profile", firstname);
       return firstname;
     }

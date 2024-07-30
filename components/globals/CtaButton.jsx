@@ -6,7 +6,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 export default function CtaButton({ props }) {
 
   const [loaded, error] = useFonts({
-    "TitilliumWeb-Bold": require("@/assets/fonts/TitilliumWeb-Bold.ttf")
+    "Titillium Web Bold": require("@/assets/fonts/TitilliumWeb-Bold.ttf")
   });
 
   const { text, borderRadius, withIcon, iconType, actionOnPress, disabled, addStyles, addTextStyles } = props;
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   customButtonText: {
-    fontFamily: "TitiliumWeb-Bold, system-ui, sans-serif",
+    fontFamily: "Titillium Web Bold",
     fontWeight: "bold",
     fontSize: 16,
     color: "#FFFFFF",

@@ -13,10 +13,15 @@ import {
 } from "@/components/globals";
 import { useEffect, useState } from "react";
 import { getSavedFirstname } from "@/shared/AsyncFunctions";
+import { useFonts } from "expo-font";
 
 export default function HomeScreen() {
   const [loading, setLoading] = useState(true);
   const [firstname, setFirstname] = useState("");
+
+  const [loaded, error] = useFonts({
+    "Titillium Web Regular": require("@/assets/fonts/TitilliumWeb-Regular.ttf")
+  });
 
   useEffect(() => {
     getSavedFirstname().then((data) => {
@@ -103,5 +108,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderWidth: 1,
     borderColor: "#BACEC1",
+    fontFamily: "Titillium Web Regular",
   },
 });

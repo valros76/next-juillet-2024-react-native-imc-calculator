@@ -41,7 +41,7 @@ export default function ProfileScreen() {
       }
       setNewFirstname("");
     });
-    
+
     await getSavedFirstname().then(data => {
       if(!data){
         return;
@@ -77,6 +77,7 @@ export default function ProfileScreen() {
           placeholder="Nouveau prénom"
           placeholderTextColor="#BACEC1"
           onChangeText={setNewFirstname}
+          value={newFirstname}
         />
         <CtaButton
           props={{

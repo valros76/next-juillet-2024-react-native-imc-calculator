@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
-import {getSavedFirstname} from "@/shared/AsyncFunctions";
+import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import {getSavedFirstname, modifyFirstname} from "@/shared/AsyncFunctions";
+import { CtaButton, WelcomeText } from "@/components/globals";
 
 export default function ProfileScreen() {
 
@@ -9,6 +10,7 @@ export default function ProfileScreen() {
    */
 
   const [firstname, setFirstname] = useState("");
+  const [newFirstname, setNewFirstname] = useState("");
 
   useEffect(() => {
     getSavedFirstname()
@@ -23,6 +25,30 @@ export default function ProfileScreen() {
       setFirstname("");
     }
   }, []);
+
+  const handleModifyFirstname = async () => {
+    if(newFirstname.length <= 0){
+      return;
+    }
+
+    setNewFirstname(() => newFirstname.toLowerCase().trim());
+    setNewFirstname(() => newFirstname.replaceAll(" ", ""));
+    setNewFirstname(() => newFirstname.slice(0,1).toUpperCase() + newFirstname.slice(1, newFirstname.length));
+
+    await modifyFirstname(newFirstname).then(data => {
+      if(!data){
+        return;
+      }
+      setNewFirstname("");
+    });
+    
+    await getSavedFirstname().then(data => {
+      if(!data){
+        return;
+      }
+      setFirstname(data);
+    });
+  }
 
 
   return (
@@ -41,7 +67,24 @@ export default function ProfileScreen() {
       </View>
 
       <View style={styles.modifyUserView}>
-        
+        <WelcomeText
+          props={{
+            text: "Un autre utilisateur ?"
+          }}
+        />
+        <TextInput
+          style={styles.firstnameInput}
+          placeholder="Nouveau prénom"
+          placeholderTextColor="#BACEC1"
+          onChangeText={setNewFirstname}
+        />
+        <CtaButton
+          props={{
+            text: "Modifier",
+            actionOnPress: () => handleModifyFirstname(),
+            disabled: newFirstname.length <= 0
+          }}
+        />
       </View>
     </View>
   );
@@ -71,5 +114,16 @@ const styles = StyleSheet.create({
   firstname: {
     fontSize:64,
     textAlign:"center",
-  }
+  },
+  firstnameInput: {
+    width: 240,
+    height: 40,
+    borderRadius: 8,
+    backgroundColor: "#ffffff",
+    textAlign: "center",
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderWidth: 1,
+    borderColor: "#BACEC1",
+  },
 });

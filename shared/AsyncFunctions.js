@@ -63,6 +63,19 @@ export async function initFirstname(firstname = ""){
   }
 }
 
+export async function modifyFirstname(firstname = ""){
+  try{
+    if(firstname.length <= 0){
+      return;
+    }
+    
+    await storeData("@profile", firstname);
+    return firstname;
+  }catch(err){
+    console.table(err);
+  }
+}
+
 export async function getSavedFirstname(){
   try{
     const jsonValue = await getData("@profile");

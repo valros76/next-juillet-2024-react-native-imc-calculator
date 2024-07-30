@@ -30,6 +30,7 @@ export default function ImcCalculatorScreen() {
     let imc = (Number(weight) * 10000) / (Number(size) * Number(size));
     imc = Number(imc.toFixed(1));
     setImc(imc);
+    determineResultHint(Number(imc));
   }
 
   const determineResultHint = (imc: number) => {
@@ -99,7 +100,7 @@ export default function ImcCalculatorScreen() {
                   fontWeight: "bold",
                   letterSpacing: .1,
                 },
-                actionOnPress: () => handleCalculateIMC()
+                actionOnPress: () => handleCalculateIMC(Number(size), Number(weight))
               }}
             />
           </View>

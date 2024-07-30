@@ -41,7 +41,7 @@ export default function ProfileScreen() {
       </View>
 
       <View style={styles.modifyUserView}>
-
+        
       </View>
     </View>
   );
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     paddingVertical:42,
   },
   userInfosView: {
-    gap: 24,
+    gap: 6,
   },
   modifyUserView: {
     gap: 8,

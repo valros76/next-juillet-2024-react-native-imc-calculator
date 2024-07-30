@@ -1,6 +1,5 @@
 import { Link, router } from "expo-router";
 import {initFirstname} from "@/shared/AsyncFunctions";
-
 import {
   StyleSheet,
   Text,
@@ -21,11 +20,11 @@ export default function HomeScreen() {
       return;
     }
 
+
     name = name.trim();
     name = name.replace(" ", "");
     name = name.toLowerCase();
     name = name.slice(0,1).toUpperCase()+name.slice(1, name.length);
-
     await initFirstname(name);
     setFirstname("");
     router.push("dashboard");

@@ -41,7 +41,7 @@ const verifyJsonValue = (jsonValue) => {
     return;
   }
   const isJsonStringified = jsonValue.includes(":");
-  return isJsonStringified ? JSON.parse(jsonValue) : jsonValue;
+  return isJsonStringified ? JSON.parse(jsonValue) : jsonValue.replaceAll("\"", "");
 }
 
 export async function initFirstname(firstname = ""){

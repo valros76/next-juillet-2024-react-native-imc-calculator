@@ -1,6 +1,7 @@
 import { Link, router } from "expo-router";
-import {initFirstname} from "@/shared/AsyncFunctions";
+import { initFirstname } from "@/shared/AsyncFunctions";
 import {
+  ActivityIndicator,
   StyleSheet,
   Text,
   TextInput,
@@ -10,53 +11,78 @@ import {
   WelcomeText,
   CtaButton,
 } from "@/components/globals";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getSavedFirstname } from "@/shared/AsyncFunctions";
 
 export default function HomeScreen() {
+  const [loading, setLoading] = useState(true);
   const [firstname, setFirstname] = useState("");
 
+  useEffect(() => {
+    getSavedFirstname().then((data) => {
+      if (!data) {
+        setLoading(false);
+        return;
+      }
+      // router.push("dashboard");
+    });
+  }, []);
+
   const handleConfirmFirstname = async (name = "") => {
-    if(name.length <= 0){
+    if (name.length <= 0) {
       return;
     }
-
 
     name = name.trim();
     name = name.replace(" ", "");
     name = name.toLowerCase();
-    name = name.slice(0,1).toUpperCase()+name.slice(1, name.length);
+    name =
+      name.slice(0, 1).toUpperCase() +
+      name.slice(1, name.length);
     await initFirstname(name);
     setFirstname("");
     router.push("dashboard");
-  }
+  };
 
   return (
-    <View style={styles.container}>
-      <WelcomeText
-        props={{
-          text: "Bonjour.",
-        }}
-      />
-      <WelcomeText
-        props={{
-          text: "Quel est votre prénom ?",
-        }}
-      />
-      <TextInput
-        style={styles.firstnameInput}
-        placeholder="Votre prénom"
-        placeholderTextColor="#BACEC1"
-        value={firstname}
-        onChangeText={setFirstname}
-      />
-      <CtaButton
-        props={{
-          text: "Commencer",
-          actionOnPress: () => handleConfirmFirstname(firstname),
-          disabled: firstname.length <= 0
-        }}
-      />
-    </View>
+    <>
+      {loading ? (
+        <View style={styles.container}>
+          <ActivityIndicator
+            size="large"
+            color="#E59560"
+          />
+        </View>
+      ) : (
+        <View style={styles.container}>
+          <WelcomeText
+            props={{
+              text: "Bonjour.",
+            }}
+          />
+          <WelcomeText
+            props={{
+              text: "Quel est votre prénom ?",
+            }}
+          />
+          <TextInput
+            style={styles.firstnameInput}
+            placeholder="Votre prénom"
+            placeholderTextColor="#BACEC1"
+            value={firstname}
+            onChangeText={setFirstname}
+          />
+          <CtaButton
+            props={{
+              text: "Commencer",
+              actionOnPress: () =>
+                handleConfirmFirstname(firstname),
+              disabled: firstname.length <= 0,
+            }}
+          />
+        </View>
+      )}
+    </>
   );
 }
 

@@ -70,7 +70,7 @@ export default function ImcCalculatorScreen() {
           >
             <WelcomeText
               props={{
-                text: imc,
+                text: imc > 0 ? imc.toFixed(1) : imc,
                 fontFamilyBold: true,
                 addStyles: {
                   fontSize:36,

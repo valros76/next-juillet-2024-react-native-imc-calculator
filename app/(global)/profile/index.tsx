@@ -16,6 +16,7 @@ import {
   CtaButton,
   WelcomeText,
 } from "@/components/globals";
+import { useFonts } from "expo-font";
 
 export default function ProfileScreen() {
   /**
@@ -24,6 +25,11 @@ export default function ProfileScreen() {
 
   const [firstname, setFirstname] = useState("");
   const [newFirstname, setNewFirstname] = useState("");
+
+  const [loaded, error] = useFonts({
+    "Titillium Web Regular": require("@/assets/fonts/TitilliumWeb-Regular.ttf"),
+    "Titillium Web Bold": require("@/assets/fonts/TitilliumWeb-Bold.ttf"),
+  });
 
   useEffect(() => {
     getSavedFirstname().then((data) => {
@@ -86,6 +92,7 @@ export default function ProfileScreen() {
           <WelcomeText
             props={{
               text: "Un autre utilisateur ?",
+              fontFamilyLight: true,
             }}
           />
           <TextInput
@@ -144,6 +151,7 @@ const styles = StyleSheet.create({
   firstname: {
     fontSize: 64,
     textAlign: "center",
+    fontFamily: "Titillium Web Bold",
   },
   firstnameInput: {
     width: 240,
@@ -155,6 +163,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderWidth: 1,
     borderColor: "#BACEC1",
+    fontFamily: "Titillium Web Regular",
   },
   cta: {
     marginHorizontal: "auto",

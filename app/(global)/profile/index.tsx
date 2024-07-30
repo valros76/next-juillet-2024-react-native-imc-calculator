@@ -83,7 +83,9 @@ export default function ProfileScreen() {
           props={{
             text: "Modifier",
             actionOnPress: () => handleModifyFirstname(),
-            disabled: newFirstname.length <= 0
+            disabled: newFirstname.length <= 0,
+            addStyles: styles.cta,
+            addTextStyles: styles.ctaText
           }}
         />
       </View>
@@ -127,4 +129,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#BACEC1",
   },
+  cta: {
+    marginHorizontal:"auto",
+  },
+  ctaText:{
+    fontSize: 16,
+  }
 });

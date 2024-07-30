@@ -7,8 +7,14 @@ import {
   View,
 } from "react-native";
 import { Card } from "@/components/globals";
+import { useFonts } from "expo-font";
 
 export default function AboutScreen() {
+
+  const [loaded, error] = useFonts({
+    "Titillium Web Regular": require("@/assets/fonts/TitilliumWeb-Regular.ttf"),
+  });
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -18,21 +24,21 @@ export default function AboutScreen() {
             title: "Développeur",
           }}
         >
-          <Text>Dufrène Valérian</Text>
+          <Text style={styles.customFont}>Dufrène Valérian</Text>
         </Card>
         <Card
           props={{
             title: "Entreprise",
           }}
         >
-          <Text>Webdevoo Formation</Text>
+          <Text style={styles.customFont}>Webdevoo Formation</Text>
         </Card>
         <Card
           props={{
             title: "Type de projet",
           }}
         >
-          <Text>Open-source</Text>
+          <Text style={styles.customFont}>Open-source</Text>
         </Card>
         </View>
       </ScrollView>
@@ -53,5 +59,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 24,
     paddingVertical: 36,
+  },
+  customFont: {
+    fontFamily: "Titillium Web Regular",
   }
 });

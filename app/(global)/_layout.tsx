@@ -7,6 +7,7 @@ export default function GlobalLayout() {
   
   const [loaded, error] = useFonts({
     "Titillium Web Light": require("@/assets/fonts/TitilliumWeb-Light.ttf"),
+    "Titillium Web Bold": require("@/assets/fonts/TitilliumWeb-Bold.ttf"),
   });
 
   return (
@@ -15,6 +16,9 @@ export default function GlobalLayout() {
         name="index"
         options={{
           title: "Index",
+          headerTitleStyle: {
+            fontFamily:"Titillium Web Bold"
+          },
           tabBarLabel: () => (<Text>
             Accueil
           </Text>),
@@ -36,6 +40,9 @@ export default function GlobalLayout() {
         name="dashboard/index"
         options={{
           title: "Dashboard",
+          headerTitleStyle: {
+            fontFamily:"Titillium Web Bold"
+          },
           tabBarLabel: () => (<Text>Dashboard</Text>),
           tabBarIcon: () => (<TabBarIcon name="stats-chart-outline" size={14}/>),
           tabBarItemStyle: [styles.tabBarItemCustom, {
@@ -54,6 +61,9 @@ export default function GlobalLayout() {
         name="profile/index"
         options={{
           title: "Profil",
+          headerTitleStyle: {
+            fontFamily:"Titillium Web Bold"
+          },
           tabBarLabel: () => (<Text>Profil</Text>),
           tabBarIcon: () => (<TabBarIcon name="person-circle-outline" size={14}/>),
           tabBarItemStyle: [styles.tabBarItemCustom, {
@@ -71,6 +81,9 @@ export default function GlobalLayout() {
         name="imc-calculator/index"
         options={{
           title: "Calculer mon IMC",
+          headerTitleStyle: {
+            fontFamily:"Titillium Web Bold"
+          },
           tabBarLabel: () => (<Text>Mon IMC</Text>),
           tabBarIcon: () => (<TabBarIcon name="add-circle-outline" size={14}/>),
           tabBarItemStyle: [styles.tabBarItemCustom, {
@@ -88,6 +101,9 @@ export default function GlobalLayout() {
         name="about/index"
         options={{
           title: "À propos",
+          headerTitleStyle: {
+            fontFamily:"Titillium Web Bold"
+          },
           tabBarLabel: () => (<Text>À propos</Text>),
           tabBarIcon: () => (<TabBarIcon name="settings-outline" size={14}/>),
           tabBarItemStyle: [styles.tabBarItemCustom, {
@@ -105,6 +121,9 @@ export default function GlobalLayout() {
         name="history/index"
         options={{
           title: "Mon suivi",
+          headerTitleStyle: {
+            fontFamily:"Titillium Web Bold"
+          },
           tabBarLabel: () => (<Text>Mon suivi</Text>),
           tabBarIcon: () => (<TabBarIcon name="time-outline" size={14}/>),
           tabBarItemStyle: [styles.tabBarItemCustom, {

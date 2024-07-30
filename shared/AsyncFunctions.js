@@ -66,9 +66,7 @@ export async function initFirstname(firstname = ""){
 export async function getSavedFirstname(){
   try{
     const jsonValue = await getData("@profile");
-
     return verifyJsonValue(jsonValue);
-
   }catch(err){
     console.table(err);
   }

@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { Image, StyleSheet, View } from "react-native";
-import {} from "@/shared/AsyncFunctions";
+import { useEffect, useState } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import {getSavedFirstname} from "@/shared/AsyncFunctions";
 
 export default function ProfileScreen() {
 
@@ -9,6 +9,20 @@ export default function ProfileScreen() {
    */
 
   const [firstname, setFirstname] = useState("");
+
+  useEffect(() => {
+    getSavedFirstname()
+    .then(data => {
+      if(!data){
+        return;
+      }
+      setFirstname(data);
+    });
+
+    return () => {
+      setFirstname("");
+    }
+  }, []);
 
 
   return (
@@ -20,6 +34,10 @@ export default function ProfileScreen() {
             uri: "https://api.dicebear.com/8.x/bottts/svg?seed=241",
           }}
         />
+
+        <Text style={styles.firstname}>
+          {firstname}
+        </Text>
       </View>
 
       <View style={styles.modifyUserView}>
@@ -48,5 +66,10 @@ const styles = StyleSheet.create({
     width:128,
     height:128,
     borderRadius:128,
+    marginHorizontal: "auto",
+  },
+  firstname: {
+    fontSize:64,
+    textAlign:"center",
   }
 });

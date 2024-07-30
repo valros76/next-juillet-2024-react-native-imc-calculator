@@ -2,7 +2,7 @@ import {  StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 
 export default function WelcomeText({ props }){
-  const {darkMode, fontFamilyLight} = props;
+  const {darkMode, fontFamilyLight, fontFamilyBold, addStyles} = props;
 
   const [loaded, error] = useFonts({
     "Titillium Web Light": require("@/assets/fonts/TitilliumWeb-Light.ttf"),
@@ -19,7 +19,8 @@ export default function WelcomeText({ props }){
       <Text style={{
         ...styles.text,
         color: darkMode && "#FFFFFF",
-        fontFamily: (darkMode && "Titillium Web Bold") || (fontFamilyLight && "Titillium Web Light"),
+        fontFamily: ((darkMode || fontFamilyBold) && "Titillium Web Bold") || (fontFamilyLight && "Titillium Web Light"),
+        ...addStyles
       }}>
         {props.text}
       </Text>

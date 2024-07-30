@@ -27,10 +27,19 @@ export default function ImcCalculatorScreen() {
      * IMC = ((poids * 10000) / (taille * taille))
      */
 
+    if(size <= 0){
+      setResult(`Division par zéro impossible`);
+      setSize("");
+      setImc(0);
+      return;
+    }
+
     let imc = (Number(weight) * 10000) / (Number(size) * Number(size));
     imc = Number(imc.toFixed(1));
     setImc(imc);
     determineResultHint(Number(imc));
+    setSize("");
+    setWeight("");
   }
 
   const determineResultHint = (imc: number) => {
@@ -100,7 +109,12 @@ export default function ImcCalculatorScreen() {
                   fontWeight: "bold",
                   letterSpacing: .1,
                 },
-                actionOnPress: () => handleCalculateIMC(Number(size), Number(weight))
+                actionOnPress: () => handleCalculateIMC(Number(size), Number(weight)),
+                /**
+                 * Autre notation possible :
+                 * disabled: (weight.length <= 0) || (size.length <= 0)
+                 */
+                disabled: ((size.length && weight.length) <= 0)
               }}
             />
           </View>

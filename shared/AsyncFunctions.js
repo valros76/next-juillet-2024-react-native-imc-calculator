@@ -12,11 +12,9 @@ const storeData = async (key = "@key", value) => {
 const getData = async (key = "@key") => {
   try{
     const jsonValue = await AsyncStorage.getItem(key);
-    if(!jsonValue){
-      return;
-    }
-    const isJsonStringified = jsonValue.includes(":");
-    return isJsonStringified ? JSON.parse(jsonValue) : jsonValue;
+    
+    return verifyJsonValue(jsonValue);
+
   }catch(err){
     console.table(err);
   }
@@ -38,6 +36,14 @@ const deleteAllDatas = async () => {
   }
 }
 
+const verifyJsonValue = (jsonValue) => {
+  if(!jsonValue){
+    return;
+  }
+  const isJsonStringified = jsonValue.includes(":");
+  return isJsonStringified ? JSON.parse(jsonValue) : jsonValue;
+}
+
 export async function initFirstname(firstname = ""){
   try{
     if(firstname.length <= 0){
@@ -50,8 +56,18 @@ export async function initFirstname(firstname = ""){
       return firstname;
     }
 
-    const isJsonStringified = jsonValue.includes(":");
-    return isJsonStringified ? JSON.parse(jsonValue) : jsonValue;
+    return verifyJsonValue(jsonValue);
+
+  }catch(err){
+    console.table(err);
+  }
+}
+
+export async function getSavedFirstname(){
+  try{
+    const jsonValue = await getData("@profile");
+
+    return verifyJsonValue(jsonValue);
 
   }catch(err){
     console.table(err);

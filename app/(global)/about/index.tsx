@@ -16,7 +16,10 @@ export default function AboutScreen(){
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    justifyContent: "center",
-    alignItems: "flex-start"
+    justifyContent: "flex-start",
+    alignItems: "center",
+    gap:24,
+    backgroundColor: "#F6F4E8",
+    paddingVertical:36,
   }
 });

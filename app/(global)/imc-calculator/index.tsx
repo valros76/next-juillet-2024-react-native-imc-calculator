@@ -122,7 +122,7 @@ export default function ImcCalculatorScreen() {
             />
             <WelcomeText
               props={{
-                text: "En attente des informations",
+                text: result.length > 0 ? result : "En attente des informations",
                 fontFamilyLight: true,
                 addStyles:{
                   padding:0,

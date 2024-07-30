@@ -71,12 +71,22 @@ export default function ImcCalculatorScreen() {
             <WelcomeText
               props={{
                 text: imc,
+                fontFamilyBold: true,
+                addStyles: {
+                  fontSize:36,
+                  letterSpacing:.63,
+                  lineHeight:36,
+                  padding:0,
+                }
               }}
             />
             <WelcomeText
               props={{
                 text: "En attente des informations",
                 fontFamilyLight: true,
+                addStyles:{
+                  padding:0,
+                }
               }}
             />
           </View>

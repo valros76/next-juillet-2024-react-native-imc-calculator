@@ -1,8 +1,14 @@
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Tabs } from "expo-router";
 import { StyleSheet, Text } from "react-native";
+import { useFonts } from "expo-font";
 
 export default function GlobalLayout() {
+  
+  const [loaded, error] = useFonts({
+    "Titillium Web Light": require("@/assets/fonts/TitilliumWeb-Light.ttf"),
+  });
+
   return (
     <Tabs>
       <Tabs.Screen
@@ -20,6 +26,9 @@ export default function GlobalLayout() {
           tabBarIconStyle: {
             ...styles.tabBarIconCustom
           },
+          tabBarLabelStyle:{
+            fontFamily: "Titillium Web Light"
+          },
           href: null,
         }}
       />
@@ -35,6 +44,9 @@ export default function GlobalLayout() {
           tabBarIconStyle: {
             ...styles.tabBarIconCustom
           },
+          tabBarLabelStyle:{
+            fontFamily: "Titillium Web Light"
+          },
           href: null
         }}
       />
@@ -49,7 +61,10 @@ export default function GlobalLayout() {
           }],
           tabBarIconStyle: {
             ...styles.tabBarIconCustom
-          }
+          },
+          tabBarLabelStyle:{
+            fontFamily: "Titillium Web Light"
+          },
         }}
       />
       <Tabs.Screen
@@ -63,7 +78,10 @@ export default function GlobalLayout() {
           }],
           tabBarIconStyle: {
             ...styles.tabBarIconCustom
-          }
+          },
+          tabBarLabelStyle:{
+            fontFamily: "Titillium Web Light"
+          },
         }}
       />
       <Tabs.Screen
@@ -77,7 +95,10 @@ export default function GlobalLayout() {
           }],
           tabBarIconStyle: {
             ...styles.tabBarIconCustom
-          }
+          },
+          tabBarLabelStyle:{
+            fontFamily: "Titillium Web Light"
+          },
         }}
       />
       <Tabs.Screen
@@ -91,6 +112,9 @@ export default function GlobalLayout() {
           }],
           tabBarIconStyle: {
             ...styles.tabBarIconCustom
+          },
+          tabBarLabelStyle:{
+            fontFamily: "Titillium Web Light"
           },
           href: null
         }}

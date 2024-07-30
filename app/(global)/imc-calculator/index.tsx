@@ -7,11 +7,12 @@ import {
 } from "react-native";
 import { useFonts } from "expo-font";
 import { useState } from "react";
-import { CtaButton } from "@/components/globals";
+import { CtaButton, WelcomeText } from "@/components/globals";
 
 export default function ImcCalculatorScreen() {
   const [size, setSize] = useState("");
   const [weight, setWeight] = useState("");
+  const [imc, setImc] = useState(0);
 
   const [loaded, error] = useFonts({
     "Titillium Web Light": require("@/assets/fonts/TitilliumWeb-Light.ttf"),
@@ -51,6 +52,7 @@ export default function ImcCalculatorScreen() {
                 addStyles: {
                   width:"auto",
                   marginHorizontal:"auto",
+                  marginVertical:0,
                   paddingVertical: 10,
                   paddingHorizontal: 24,
                 },
@@ -65,7 +67,19 @@ export default function ImcCalculatorScreen() {
 
           <View
             style={styles.calculateIMCResultView}
-          ></View>
+          >
+            <WelcomeText
+              props={{
+                text: imc,
+              }}
+            />
+            <WelcomeText
+              props={{
+                text: "En attente des informations",
+                fontFamilyLight: true,
+              }}
+            />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -102,6 +116,7 @@ const styles = StyleSheet.create({
     width: 240,
     height: 40,
     borderRadius: 8,
+    fontSize: 16,
     backgroundColor: "#ffffff",
     textAlign: "left",
     paddingHorizontal: 16,

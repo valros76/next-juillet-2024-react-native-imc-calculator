@@ -24,7 +24,7 @@ export default function HomeScreen() {
         setLoading(false);
         return;
       }
-      // router.push("dashboard");
+      router.push("dashboard");
     });
   }, []);
 

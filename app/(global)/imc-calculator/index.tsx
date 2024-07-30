@@ -13,12 +13,50 @@ export default function ImcCalculatorScreen() {
   const [size, setSize] = useState("");
   const [weight, setWeight] = useState("");
   const [imc, setImc] = useState(0);
+  const [result, setResult] = useState("");
 
   const [loaded, error] = useFonts({
     "Titillium Web Light": require("@/assets/fonts/TitilliumWeb-Light.ttf"),
     "Titillium Web Regular": require("@/assets/fonts/TitilliumWeb-Regular.ttf"),
     "Titillium Web Bold": require("@/assets/fonts/TitilliumWeb-Bold.ttf"),
   });
+
+  const handleCalculateIMC = (size: number, weight: number) => {
+    /**
+     * Formule de calcul de l'IMC :
+     * IMC = ((poids * 10000) / (taille * taille))
+     */
+
+    let imc = (Number(weight) * 10000) / (Number(size) * Number(size));
+    imc = Number(imc.toFixed(1));
+    setImc(imc);
+  }
+
+  const determineResultHint = (imc: number) => {
+    switch(true){
+      case (imc <= 18.5):
+        setResult(`Maigreur, consultez un nutritionniste`);
+      break;
+      case (imc <= 25 && imc > 18.5):
+        setResult(`Poids normal`);
+      break;
+      case (imc <= 30 && imc > 25):
+        setResult(`Surpoids`);
+      break;
+      case (imc <= 35 && imc > 30):
+        setResult(`Obésité modérée`);
+      break;
+      case (imc <= 40 && imc > 35):
+        setResult(`Obésité sévère, consultez un nutritionniste`);
+      break;
+      case (imc > 40):
+        setResult(`Obésité morbide, consultez un nutritionniste rapidement`);
+      break;
+      default:
+        setResult(`Les valeurs fournies sont incorrectes`);
+      break;
+    }
+  }
 
   return (
     <SafeAreaView style={styles.view}>
@@ -60,7 +98,8 @@ export default function ImcCalculatorScreen() {
                   fontSize: 16,
                   fontWeight: "bold",
                   letterSpacing: .1,
-                }
+                },
+                actionOnPress: () => handleCalculateIMC()
               }}
             />
           </View>

@@ -89,10 +89,15 @@ export async function saveImcResultToHistory(size, weight, imc, imcHint, sizeUni
   try{
     const firstname = await getSavedFirstname();
     const actualDate = new Date();
+    let day = actualDate.getDate();
+    day = day < 10 ? `0${day}` : day;
+    let month = actualDate.getMonth() + 1;
+    month = month < 10 ? `0${month}` : month;
+    let year = actualDate.getFullYear();
 
     const historyResult = {
       firstname: firstname,
-      date: `${actualDate.getDay()}/${actualDate.getMonth()}/{${actualDate.getYear()}}`,
+      date: `${day}/${month}/${year}`,
       timestamp: Date.now(),
       imc: Number(imc.toFixed(1)),
       imcHint: imcHint,
@@ -106,10 +111,16 @@ export async function saveImcResultToHistory(size, weight, imc, imcHint, sizeUni
 
     const oldHistory = await getData("@history");
 
-    history = [
-      ...oldHistory,
-      ...historyResult
-    ];
+    if(oldHistory){
+      history = [
+        ...oldHistory,
+        historyResult
+      ];
+    }else{
+      history = [
+        historyResult
+      ];
+    }
 
     //history = JSON.parse(history);
 

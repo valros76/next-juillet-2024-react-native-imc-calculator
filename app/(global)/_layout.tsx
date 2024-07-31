@@ -97,26 +97,7 @@ export default function GlobalLayout() {
           },
         }}
       />
-      <Tabs.Screen
-        name="about/index"
-        options={{
-          title: "À propos",
-          headerTitleStyle: {
-            fontFamily:"Titillium Web Bold"
-          },
-          tabBarLabel: () => (<Text>À propos</Text>),
-          tabBarIcon: () => (<TabBarIcon name="settings-outline" size={14}/>),
-          tabBarItemStyle: [styles.tabBarItemCustom, {
-            backgroundColor:"#fff"
-          }],
-          tabBarIconStyle: {
-            ...styles.tabBarIconCustom
-          },
-          tabBarLabelStyle:{
-            fontFamily: "Titillium Web Light"
-          },
-        }}
-      />
+      
       <Tabs.Screen
         name="history/index"
         options={{
@@ -135,7 +116,27 @@ export default function GlobalLayout() {
           tabBarLabelStyle:{
             fontFamily: "Titillium Web Light"
           },
-          href: null
+          // href: null
+        }}
+      />
+      <Tabs.Screen
+        name="about/index"
+        options={{
+          title: "À propos",
+          headerTitleStyle: {
+            fontFamily:"Titillium Web Bold"
+          },
+          tabBarLabel: () => (<Text>À propos</Text>),
+          tabBarIcon: () => (<TabBarIcon name="settings-outline" size={14}/>),
+          tabBarItemStyle: [styles.tabBarItemCustom, {
+            backgroundColor:"#fff"
+          }],
+          tabBarIconStyle: {
+            ...styles.tabBarIconCustom
+          },
+          tabBarLabelStyle:{
+            fontFamily: "Titillium Web Light"
+          },
         }}
       />
     </Tabs>

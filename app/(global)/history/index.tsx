@@ -9,7 +9,8 @@ import {
 } from "react-native";
 import { getSavedHistory } from "@/shared/AsyncFunctions";
 import { useEffect, useState } from "react";
-import { Card } from "@/components/globals";
+import { Card, CtaButton } from "@/components/globals";
+import { router } from "expo-router";
 
 export default function HistoryScreen() {
   const [datas, setDatas] = useState([]);
@@ -102,6 +103,17 @@ export default function HistoryScreen() {
                 }}
               >
                 <Text>Vous n'avez jamais calculé votre IMC.</Text>
+                <CtaButton
+                  props={{
+                    text:"Calculer mon IMC",
+                    actionOnPress: () => router.push("imc-calculator"),
+                    addStyles:{
+                      marginLeft: "auto",
+                      marginTop:24,
+                      padding:6,
+                    }
+                  }}
+                />
               </Card>
             )}
           </>

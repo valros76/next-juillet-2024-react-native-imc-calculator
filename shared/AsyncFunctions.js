@@ -84,3 +84,38 @@ export async function getSavedFirstname(){
     console.table(err);
   }
 }
+
+export async function saveImcResultToHistory(size, weight, imc, imcHint, sizeUnit = "cm", weightUnit = "kg"){
+  try{
+    const firstname = await getSavedFirstname();
+    const actualDate = new Date();
+
+    const historyResult = {
+      firstname: firstname,
+      date: `${actualDate.getDay()}/${actualDate.getMonth()}/{${actualDate.getYear()}}`,
+      timestamp: Date.now(),
+      imc: Number(imc.toFixed(1)),
+      imcHint: imcHint,
+      size: Number(size),
+      sizeUnit: sizeUnit,
+      weight: Number(weight),
+      weightUnit: weightUnit,
+    };
+
+    let history = [];
+
+    const oldHistory = await getData("@history");
+
+    history = [
+      ...oldHistory,
+      ...historyResult
+    ];
+
+    //history = JSON.parse(history);
+
+    await storeData("@history", history);
+
+  }catch(err){
+    console.table(err);
+  }
+}

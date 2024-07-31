@@ -6,7 +6,7 @@ import {
   View,
 } from "react-native";
 import { useFonts } from "expo-font";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CtaButton, WelcomeText } from "@/components/globals";
 
 export default function ImcCalculatorScreen() {

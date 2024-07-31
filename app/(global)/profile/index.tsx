@@ -22,6 +22,7 @@ import { useImcCalculatorContext } from "@/shared/contexts/ImcCalculatorProvider
 export default function ProfileScreen() {
   /**
    * TODO : Régler le problème de l'avatar qui ne charge pas sur mobile !
+   * Solution: L'image utilisée par défaut était au format SVG, donc incompatible avec les appareils mobiles de manière native.
    */
 
   const {firstname, setFirstname, findFirstname} = useImcCalculatorContext();
@@ -65,7 +66,7 @@ export default function ProfileScreen() {
           <Image
             style={styles.avatar}
             source={{
-              uri: "https://api.dicebear.com/8.x/bottts/svg?seed=241",
+              uri: "https://plus.unsplash.com/premium_photo-1678865310627-129c0980ab6e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             }}
           />
 

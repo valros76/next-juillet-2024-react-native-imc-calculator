@@ -56,6 +56,9 @@ export default function ImcCalculatorScreen() {
   }
 
   const determineResultHint = async (imc: number) => {
+    /**
+     * TODO : transformer en gestion par état du contexte ImcCalculatorContext.
+     */
     let imcHint = "";
     switch(true){
       case (imc <= 18.5):

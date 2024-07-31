@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, SafeAreaView, ScrollView, StyleSheet, Text } from "react-native";
+import { ActivityIndicator, FlatList, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { getSavedHistory } from "@/shared/AsyncFunctions";
 import { useEffect, useState } from "react";
 import { Card } from "@/components/globals";
@@ -37,6 +37,10 @@ export default function HistoryScreen(){
             <Text>Poids : {data.item.weight} {data.item.weightUnit}</Text>
           </Card>)}
           keyExtractor={(item: any) => item.timestamp}
+          ItemSeparatorComponent={() => (<View style={{
+            width:"100%",
+            height:24,
+          }}></View>)}
         />
         ) : (
           <ActivityIndicator
@@ -59,5 +63,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     backgroundColor:"transparent",
-  }
+    paddingVertical:42,
+    paddingHorizontal:20,
+  },
 });

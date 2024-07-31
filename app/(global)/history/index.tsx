@@ -18,6 +18,23 @@ export default function HistoryScreen(){
     setDatas(datas);
   }
 
+  const setCardBorderColor = (imc: number) => {
+    switch(true){
+      case (imc > 40):
+        return "#1D3124";
+      case (imc <= 18.5):
+      case (imc <= 40 && imc > 35):
+        return "#ED1C24";
+      case (imc <= 35 && imc > 30):
+        return "#E59560";
+      case (imc <= 30 && imc > 25):
+        return "#BACEC1";
+      case (imc <= 25 && imc > 18.5):
+      default:
+        return "#00A511";
+    }
+  }
+
   useEffect(() => {
     initDatas();
   }, []);
@@ -29,7 +46,8 @@ export default function HistoryScreen(){
           <FlatList
           data={datas}
           renderItem={(data:any) => (<Card props={{
-            title:data.item.firstname
+            title:data.item.firstname,
+            borderColor: setCardBorderColor(Number(data.item.imc))
           }}>
             <Text>{data.item.date}</Text>
             <Text>IMC : {data.item.imc} - {data.item.imcHint}</Text>

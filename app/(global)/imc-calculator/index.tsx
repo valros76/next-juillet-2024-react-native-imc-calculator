@@ -9,8 +9,12 @@ import { useFonts } from "expo-font";
 import { useState } from "react";
 import { CtaButton, WelcomeText } from "@/components/globals";
 import { saveImcResultToHistory } from "@/shared/AsyncFunctions";
+import { useImcCalculatorContext } from "@/shared/contexts/ImcCalculatorProvider";
 
 export default function ImcCalculatorScreen() {
+
+  const {findHistory} = useImcCalculatorContext();
+
   const [size, setSize] = useState("");
   const [weight, setWeight] = useState("");
   const [imc, setImc] = useState(0);
@@ -48,6 +52,7 @@ export default function ImcCalculatorScreen() {
       Number(imc.toFixed(1)),
       imcHint
     );
+    findHistory();
   }
 
   const determineResultHint = async (imc: number) => {

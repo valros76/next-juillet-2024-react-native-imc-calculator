@@ -47,11 +47,10 @@ export default function HistoryScreen() {
 
   useEffect(() => {
     initDatas();
-  }, []);
+  }, [datas]);
 
   return (
     <SafeAreaView style={styles.view}>
-      <ScrollView style={styles.scrollView}>
         {datas.length > 0 && !loading ? (
           <FlatList
             data={datas}
@@ -118,7 +117,6 @@ export default function HistoryScreen() {
             )}
           </>
         )}
-      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -130,9 +128,6 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     gap: 0,
     backgroundColor: "#F6F4E8",
-  },
-  scrollView: {
-    backgroundColor: "transparent",
     paddingVertical: 42,
     paddingHorizontal: 20,
   },

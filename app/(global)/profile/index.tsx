@@ -17,32 +17,21 @@ import {
   WelcomeText,
 } from "@/components/globals";
 import { useFonts } from "expo-font";
+import { useImcCalculatorContext } from "@/shared/contexts/ImcCalculatorProvider";
 
 export default function ProfileScreen() {
   /**
    * TODO : Régler le problème de l'avatar qui ne charge pas sur mobile !
    */
 
-  const [firstname, setFirstname] = useState("");
+  const {firstname, setFirstname, findFirstname} = useImcCalculatorContext();
+
   const [newFirstname, setNewFirstname] = useState("");
 
   const [loaded, error] = useFonts({
     "Titillium Web Regular": require("@/assets/fonts/TitilliumWeb-Regular.ttf"),
     "Titillium Web Bold": require("@/assets/fonts/TitilliumWeb-Bold.ttf"),
   });
-
-  useEffect(() => {
-    getSavedFirstname().then((data) => {
-      if (!data) {
-        return;
-      }
-      setFirstname(data);
-    });
-
-    return () => {
-      setFirstname("");
-    };
-  }, []);
 
   const handleModifyFirstname = async () => {
     if (newFirstname.length <= 0) {
@@ -66,12 +55,7 @@ export default function ProfileScreen() {
       setNewFirstname("");
     });
 
-    await getSavedFirstname().then((data) => {
-      if (!data) {
-        return;
-      }
-      setFirstname(data);
-    });
+    findFirstname();
   };
 
   return (

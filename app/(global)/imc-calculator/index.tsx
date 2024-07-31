@@ -8,6 +8,7 @@ import {
 import { useFonts } from "expo-font";
 import { useEffect, useState } from "react";
 import { CtaButton, WelcomeText } from "@/components/globals";
+import { saveImcResultToHistory } from "@/shared/AsyncFunctions";
 
 export default function ImcCalculatorScreen() {
   const [size, setSize] = useState("");
@@ -21,7 +22,7 @@ export default function ImcCalculatorScreen() {
     "Titillium Web Bold": require("@/assets/fonts/TitilliumWeb-Bold.ttf"),
   });
 
-  const handleCalculateIMC = (size: number, weight: number) => {
+  const handleCalculateIMC = async (size: number, weight: number) => {
     /**
      * Formule de calcul de l'IMC :
      * IMC = ((poids * 10000) / (taille * taille))
@@ -40,6 +41,13 @@ export default function ImcCalculatorScreen() {
     determineResultHint(Number(imc));
     setSize("");
     setWeight("");
+
+    await saveImcResultToHistory(
+      Number(size), 
+      Number(weight), 
+      Number(imc.toFixed(1)), 
+      result
+    );
   }
 
   const determineResultHint = (imc: number) => {

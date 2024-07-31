@@ -10,9 +10,12 @@ import { getSavedHistory } from "@/shared/AsyncFunctions";
 import { useEffect, useState } from "react";
 import { Card, CtaButton } from "@/components/globals";
 import { router } from "expo-router";
+import {useImcCalculatorContext} from "@/shared/contexts/ImcCalculatorProvider";
 
 export default function HistoryScreen() {
-  const [datas, setDatas] = useState([]);
+
+  const {history, setHistory, findHistory} = useImcCalculatorContext();
+
   const [loading, setLoading] = useState(true);
 
   const debug = (value: any = undefined) => {
@@ -22,8 +25,7 @@ export default function HistoryScreen() {
   };
 
   const initDatas = async () => {
-    const datas = await getSavedHistory();
-    setDatas(datas ?? []);
+    const datas = await findHistory();
     setLoading(false);
   };
 
@@ -48,16 +50,13 @@ export default function HistoryScreen() {
     if(loading){
       initDatas();
     }
-    if(datas){
-      console.table(datas);
-    }
-  }, [datas]);
+  }, []);
 
   return (
     <SafeAreaView style={styles.view}>
-        {datas.length > 0 && !loading ? (
+        {history.length > 0 && !loading ? (
           <FlatList
-            data={datas.sort((a: any, b:any) => {
+            data={history.sort((a: any, b:any) => {
               const elementA = Number(a.timestamp);
               const elementB = Number(b.timestamp);
 

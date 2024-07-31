@@ -1,4 +1,4 @@
-import {createContext, useContext, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import {getSavedFirstname, getSavedHistory} from "../AsyncFunctions";
 
 const ImcCalculatorContext = createContext();
@@ -22,6 +22,11 @@ const ImcCalculatorProvider = ({children}) => {
     }
   }
 
+  useEffect(() => {
+    findFirstname();
+    findHistory();
+  }, []);
+
   return(
     <ImcCalculatorContext.Provider
       value={{
@@ -37,3 +42,7 @@ const ImcCalculatorProvider = ({children}) => {
     </ImcCalculatorContext.Provider>
   );
 }
+
+export const useImcCalculatorContext = () => useContext(ImcCalculatorContext);
+
+export default ImcCalculatorProvider;

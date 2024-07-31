@@ -150,7 +150,7 @@ export default function ImcCalculatorScreen() {
                 addStyles: {
                   fontSize:36,
                   letterSpacing:.63,
-                  lineHeight:36,
+                  lineHeight:48,
                   padding:0,
                 }
               }}

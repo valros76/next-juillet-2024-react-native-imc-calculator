@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
   },
   menuButtonText: {
     display:"flex",
-    flex:1,
     flexDirection:"row",
     justifyContent: "space-between",
     alignItems:"center",

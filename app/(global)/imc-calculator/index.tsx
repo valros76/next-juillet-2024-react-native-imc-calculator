@@ -6,7 +6,7 @@ import {
   View,
 } from "react-native";
 import { useFonts } from "expo-font";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CtaButton, WelcomeText } from "@/components/globals";
 import { saveImcResultToHistory } from "@/shared/AsyncFunctions";
 
@@ -38,41 +38,49 @@ export default function ImcCalculatorScreen() {
     let imc = (Number(weight) * 10000) / (Number(size) * Number(size));
     imc = Number(imc.toFixed(1));
     setImc(imc);
-    determineResultHint(Number(imc));
+    const imcHint = await determineResultHint(Number(imc));
     setSize("");
     setWeight("");
 
     await saveImcResultToHistory(
       Number(size), 
       Number(weight), 
-      Number(imc.toFixed(1)), 
-      result
+      Number(imc.toFixed(1)),
+      imcHint
     );
   }
 
-  const determineResultHint = (imc: number) => {
+  const determineResultHint = async (imc: number) => {
+    let imcHint = "";
     switch(true){
       case (imc <= 18.5):
-        setResult(`Maigreur, consultez un nutritionniste`);
-      break;
+        imcHint = `Maigreur, consultez un nutritionniste`;
+        setResult(imcHint);
+        return imcHint;
       case (imc <= 25 && imc > 18.5):
-        setResult(`Poids normal`);
-      break;
+        imcHint = `Poids normal`;
+        setResult(imcHint);
+        return imcHint;
       case (imc <= 30 && imc > 25):
-        setResult(`Surpoids`);
-      break;
+        imcHint = `Surpoids`;
+        setResult(imcHint);
+        return imcHint;
       case (imc <= 35 && imc > 30):
-        setResult(`Obésité modérée`);
-      break;
+        imcHint = `Obésité modérée`;
+        setResult(imcHint);
+        return imcHint;
       case (imc <= 40 && imc > 35):
-        setResult(`Obésité sévère, consultez un nutritionniste`);
-      break;
+        imcHint = `Obésité sévère, consultez un nutritionniste`;
+        setResult(imcHint);
+        return imcHint;
       case (imc > 40):
-        setResult(`Obésité morbide, consultez un nutritionniste rapidement`);
-      break;
+        imcHint = `Obésité morbide, consultez un nutritionniste rapidement`;
+        setResult(imcHint);
+        return imcHint;
       default:
-        setResult(`Les valeurs fournies sont incorrectes`);
-      break;
+        imcHint = `Les valeurs fournies sont incorrectes`;
+        setResult(imcHint);
+        return imcHint;
     }
   }
 

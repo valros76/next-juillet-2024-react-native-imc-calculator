@@ -45,14 +45,33 @@ export default function HistoryScreen() {
   };
 
   useEffect(() => {
-    initDatas();
+    if(loading){
+      initDatas();
+    }
+    if(datas){
+      console.table(datas);
+    }
   }, [datas]);
 
   return (
     <SafeAreaView style={styles.view}>
         {datas.length > 0 && !loading ? (
           <FlatList
-            data={datas}
+            data={datas.sort((a: any, b:any) => {
+              const elementA = Number(a.timestamp);
+              const elementB = Number(b.timestamp);
+
+              // Tri par ordre décroissant
+              // Pour inverser l'ordre de tri, il suffit de modifier les retours des deux conditions suivantes (-1 / 1).
+              if(elementA < elementB){
+                return 1;
+              }
+              if(elementA > elementB){
+                return -1;
+              }
+              return 0;
+              // Fin du tri par ordre décroissant
+            })}
             renderItem={(data: any) => (
               <Card
                 props={{

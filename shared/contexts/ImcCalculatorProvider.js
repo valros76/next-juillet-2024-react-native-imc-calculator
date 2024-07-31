@@ -1,5 +1,6 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import {getSavedFirstname, getSavedHistory} from "../AsyncFunctions";
+import { router } from "expo-router";
 
 const ImcCalculatorContext = createContext();
 
@@ -12,6 +13,13 @@ const ImcCalculatorProvider = ({children}) => {
     const result = await getSavedFirstname();
     if(result){
       setFirstname(result);
+    }
+  }
+
+  const verifyIfProfileExists = async () => {
+    await findFirstname();
+    if(firstname){
+      router.push("dashboard");
     }
   }
 
@@ -35,7 +43,8 @@ const ImcCalculatorProvider = ({children}) => {
         history,
         setHistory,
         findFirstname,
-        findHistory
+        findHistory,
+        verifyIfProfileExists,
       }}
     >
       {children}

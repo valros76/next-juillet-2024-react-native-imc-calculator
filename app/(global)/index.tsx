@@ -14,24 +14,25 @@ import {
 import { useEffect, useState } from "react";
 import { getSavedFirstname } from "@/shared/AsyncFunctions";
 import { useFonts } from "expo-font";
+import { useImcCalculatorContext } from "@/shared/contexts/ImcCalculatorProvider";
 
 export default function HomeScreen() {
+
+  const {firstname, findFirstname, verifyIfProfileExists} = useImcCalculatorContext();
+
   const [loading, setLoading] = useState(true);
-  const [firstname, setFirstname] = useState("");
+  const [newFirstname, setNewFirstname] = useState("");
 
   const [loaded, error] = useFonts({
     "Titillium Web Regular": require("@/assets/fonts/TitilliumWeb-Regular.ttf")
   });
 
   useEffect(() => {
-    getSavedFirstname().then((data) => {
-      if (!data) {
-        setLoading(false);
-        return;
-      }
-      router.push("dashboard");
-    });
-  }, []);
+    verifyIfProfileExists();
+    if (!firstname) {
+      setLoading(false);
+    }
+  }, [firstname]);
 
   const handleConfirmFirstname = async (name = "") => {
     if (name.length <= 0) {
@@ -45,7 +46,8 @@ export default function HomeScreen() {
       name.slice(0, 1).toUpperCase() +
       name.slice(1, name.length);
     await initFirstname(name);
-    setFirstname("");
+    setNewFirstname("");
+    findFirstname();
     router.push("dashboard");
   };
 
@@ -74,15 +76,14 @@ export default function HomeScreen() {
             style={styles.firstnameInput}
             placeholder="Votre prénom"
             placeholderTextColor="#BACEC1"
-            value={firstname}
-            onChangeText={setFirstname}
+            value={newFirstname}
+            onChangeText={setNewFirstname}
           />
           <CtaButton
             props={{
               text: "Commencer",
-              actionOnPress: () =>
-                handleConfirmFirstname(firstname),
-              disabled: firstname.length <= 0,
+              actionOnPress: () => handleConfirmFirstname(newFirstname),
+              disabled: newFirstname.length <= 0,
             }}
           />
         </View>

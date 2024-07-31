@@ -85,6 +85,16 @@ export async function getSavedFirstname(){
   }
 }
 
+export async function getSavedHistory(){
+  try{
+    const jsonValue = await getData("@history");
+    // return verifyJsonValue(jsonValue);
+    return jsonValue;
+  }catch(err){
+    console.table(err);
+  }
+}
+
 export async function saveImcResultToHistory(size, weight, imc, imcHint, sizeUnit = "cm", weightUnit = "kg"){
   try{
     const firstname = await getSavedFirstname();
@@ -121,8 +131,6 @@ export async function saveImcResultToHistory(size, weight, imc, imcHint, sizeUni
         historyResult
       ];
     }
-
-    //history = JSON.parse(history);
 
     await storeData("@history", history);
 

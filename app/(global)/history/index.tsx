@@ -7,12 +7,10 @@ export default function HistoryScreen(){
 
   const [datas, setDatas] = useState([]);
 
-  const debug = async (value:any = undefined) => {
+  const debug = (value:any = undefined) => {
     if(value){
       console.table(value);
     }
-    const history = await getSavedHistory();
-    console.table(history);
   }
 
   const initDatas = async () => {
@@ -21,7 +19,6 @@ export default function HistoryScreen(){
   }
 
   useEffect(() => {
-    debug();
     initDatas();
   }, []);
 
@@ -31,13 +28,13 @@ export default function HistoryScreen(){
         {datas.length > 0 ? (
           <FlatList
           data={datas}
-          renderItem={(item:any) => (<Card props={{
-            title:item.firstname
+          renderItem={(data:any) => (<Card props={{
+            title:data.item.firstname
           }}>
-            <Text>{item.date}</Text>
-            <Text>IMC : {item.imc} - {item.imcHint}</Text>
-            <Text>Taille : {item.size} {item.sizeUnit}</Text>
-            <Text>Poids : {item.weight} {item.weightUnit}</Text>
+            <Text>{data.item.date}</Text>
+            <Text>IMC : {data.item.imc} - {data.item.imcHint}</Text>
+            <Text>Taille : {data.item.size} {data.item.sizeUnit}</Text>
+            <Text>Poids : {data.item.weight} {data.item.weightUnit}</Text>
           </Card>)}
           keyExtractor={(item: any) => item.timestamp}
         />

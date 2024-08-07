@@ -11,10 +11,6 @@ import { useFonts } from "expo-font";
 
 export default function AboutScreen() {
 
-  const [loaded, error] = useFonts({
-    "Titillium Web Regular": require("@/assets/fonts/TitilliumWeb-Regular.ttf"),
-  });
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>

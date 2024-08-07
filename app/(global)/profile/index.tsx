@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Image,
   SafeAreaView,
@@ -9,14 +9,12 @@ import {
   View,
 } from "react-native";
 import {
-  getSavedFirstname,
   modifyFirstname,
 } from "@/shared/AsyncFunctions";
 import {
   CtaButton,
   WelcomeText,
 } from "@/components/globals";
-import { useFonts } from "expo-font";
 import { useImcCalculatorContext } from "@/shared/contexts/ImcCalculatorProvider";
 
 export default function ProfileScreen() {
@@ -28,11 +26,6 @@ export default function ProfileScreen() {
   const {firstname, setFirstname, findFirstname} = useImcCalculatorContext();
 
   const [newFirstname, setNewFirstname] = useState("");
-
-  const [loaded, error] = useFonts({
-    "Titillium Web Regular": require("@/assets/fonts/TitilliumWeb-Regular.ttf"),
-    "Titillium Web Bold": require("@/assets/fonts/TitilliumWeb-Bold.ttf"),
-  });
 
   const handleModifyFirstname = async () => {
     if (newFirstname.length <= 0) {

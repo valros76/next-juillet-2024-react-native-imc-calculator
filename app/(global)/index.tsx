@@ -1,9 +1,8 @@
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import { initFirstname } from "@/shared/AsyncFunctions";
 import {
   ActivityIndicator,
   StyleSheet,
-  Text,
   TextInput,
   View,
 } from "react-native";
@@ -12,20 +11,17 @@ import {
   CtaButton,
 } from "@/components/globals";
 import { useEffect, useState } from "react";
-import { getSavedFirstname } from "@/shared/AsyncFunctions";
-import { useFonts } from "expo-font";
 import { useImcCalculatorContext } from "@/shared/contexts/ImcCalculatorProvider";
 
 export default function HomeScreen() {
-
-  const {firstname, findFirstname, verifyIfProfileExists} = useImcCalculatorContext();
+  const {
+    firstname,
+    findFirstname,
+    verifyIfProfileExists,
+  } = useImcCalculatorContext();
 
   const [loading, setLoading] = useState(true);
   const [newFirstname, setNewFirstname] = useState("");
-
-  const [loaded, error] = useFonts({
-    "Titillium Web Regular": require("@/assets/fonts/TitilliumWeb-Regular.ttf")
-  });
 
   useEffect(() => {
     verifyIfProfileExists();
@@ -47,7 +43,7 @@ export default function HomeScreen() {
       name.slice(1, name.length);
     await initFirstname(name);
     setNewFirstname("");
-    findFirstname();
+    await findFirstname();
     router.push("dashboard");
   };
 
@@ -82,7 +78,8 @@ export default function HomeScreen() {
           <CtaButton
             props={{
               text: "Commencer",
-              actionOnPress: () => handleConfirmFirstname(newFirstname),
+              actionOnPress: () =>
+                handleConfirmFirstname(newFirstname),
               disabled: newFirstname.length <= 0,
             }}
           />

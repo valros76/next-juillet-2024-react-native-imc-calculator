@@ -28,16 +28,7 @@
     },
     "plugins": [
       "expo-router",
-      [
-        "expo-font",
-        {
-          "fonts": [
-            "./assets/fonts/TitilliumWeb-Light.ttf",
-            "./assets/fonts/TitilliumWeb-Regular.ttf",
-            "./assets/fonts/TitilliumWeb-Bold.ttf"
-          ]
-        }
-      ]
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true

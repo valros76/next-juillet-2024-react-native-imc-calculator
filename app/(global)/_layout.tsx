@@ -1,14 +1,8 @@
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Tabs } from "expo-router";
 import { StyleSheet, Text } from "react-native";
-import { useFonts } from "expo-font";
 
 export default function GlobalLayout() {
-  
-  const [loaded, error] = useFonts({
-    "Titillium Web Light": require("@/assets/fonts/TitilliumWeb-Light.ttf"),
-    "Titillium Web Bold": require("@/assets/fonts/TitilliumWeb-Bold.ttf"),
-  });
 
   return (
     <Tabs>

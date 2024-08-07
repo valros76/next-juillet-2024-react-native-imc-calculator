@@ -5,7 +5,6 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { useFonts } from "expo-font";
 import { useState } from "react";
 import { CtaButton, WelcomeText } from "@/components/globals";
 import { saveImcResultToHistory } from "@/shared/AsyncFunctions";
@@ -19,12 +18,6 @@ export default function ImcCalculatorScreen() {
   const [weight, setWeight] = useState("");
   const [imc, setImc] = useState(0);
   const [result, setResult] = useState("");
-
-  const [loaded, error] = useFonts({
-    "Titillium Web Light": require("@/assets/fonts/TitilliumWeb-Light.ttf"),
-    "Titillium Web Regular": require("@/assets/fonts/TitilliumWeb-Regular.ttf"),
-    "Titillium Web Bold": require("@/assets/fonts/TitilliumWeb-Bold.ttf"),
-  });
 
   const handleCalculateIMC = async (size: number, weight: number) => {
     /**

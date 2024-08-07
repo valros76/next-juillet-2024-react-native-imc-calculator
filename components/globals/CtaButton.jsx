@@ -1,13 +1,8 @@
-import { useFonts } from "expo-font";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text } from "react-native";
 import Entypo from '@expo/vector-icons/Entypo';
 
 export default function CtaButton({ props }) {
-
-  const [loaded, error] = useFonts({
-    "Titillium Web Bold": require("@/assets/fonts/TitilliumWeb-Bold.ttf")
-  });
 
   const { text, borderRadius, withIcon, iconType, actionOnPress, disabled, addStyles, addTextStyles } = props;
 
